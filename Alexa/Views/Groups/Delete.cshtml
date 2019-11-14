@@ -1,0 +1,41 @@
+﻿@model Alexa.Service.Dtos.GroupDto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Are you sure you want to delete Group @Html.DisplayFor(model => model.Name)?</h2>
+<div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <p>The group contains following Suppliers:</p>
+            </dt>
+            <dd>
+                @{string spacer = "";}
+                @foreach (var item in Model.Suppliers)
+                {
+                    @(spacer) @Html.ActionLink(@item.Name, "Details", "Suppliers", new { id = @item.ID }, null)
+
+                    if (spacer == "")
+                    {
+                        spacer = " | ";
+                    }
+
+                }
+            </dd>
+        </dl>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+            @Html.ActionLink("Back to Group List", "Index", null, new { Class = "btn btn-default" })
+        </div>
+     }
+</div>
+
+

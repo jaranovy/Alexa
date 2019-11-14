@@ -1,0 +1,63 @@
+﻿@model Alexa.Service.Dtos.SupplierDto
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h2>Details of Supplier: @Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            <a href="https://www.google.cz/maps/place/@(Model.Address)">@(Model.Address)</a>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            <a href="mailto:@(Model.Email)">@(Model.Email)</a>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            <a href="tel:@Html.DisplayFor(model => model.Phone)">@Html.DisplayFor(model => model.Phone)</a>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Groups)
+        </dt>
+        <dd>
+            @{string spacer = "";}
+            @foreach (var item in Model.Groups)
+            {
+                @(spacer) @Html.ActionLink(@item.Name, "Details", "Groups", new { id = @item.ID }, null)
+
+                if (spacer == "")
+                {
+                    spacer = " | ";
+                }
+
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { Class = "btn btn-default" })
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }, new { Class = "btn btn-default" })
+    @Html.ActionLink("Back to Suppliers List", "Index", null, new { Class = "btn btn-default" })
+</p>

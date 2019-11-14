@@ -1,0 +1,69 @@
+﻿@model Alexa.Service.Dtos.SupplierDto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Are you sure you want to delete Group @Html.DisplayFor(model => model.Name)?</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Groups)
+        </dt>
+        <dd>
+            @{string spacer = "";}
+            @foreach (var item in Model.Groups)
+            {
+                @(spacer) @Html.ActionLink(@item.Name, "Details", "Groups", new { id = @item.ID }, null)
+
+                if (spacer == "")
+                {
+                    spacer = " | ";
+                }
+
+            }
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+            @Html.ActionLink("Back to List", "Index", null, new { Class = "btn btn-default" })
+        </div>
+    }
+</div>

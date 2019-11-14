@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Alexa.Service.Dtos.GroupDto>
+
+@{
+    ViewBag.Title = "Groups";
+}
+
+<h2>Groups</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Details", new { id = item.ID })
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Create New Group", "Create", null, new { Class = "btn btn-default" })
+</p>

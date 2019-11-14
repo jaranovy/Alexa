@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Alexa Suppliers Database</h1>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Suppliers</h2>
+        <p>
+            List of Suppliers which allows Add, Edit or Delete Supplier
+        </p>
+        <p><a href="@Url.Action("Index", "Suppliers")" class="btn btn-primary btn-lg">Suppliers &raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Groups</h2>
+        <p>
+            List of Groups which allows Add, Edit or Delete Supplier
+        </p>
+        <p><a href="@Url.Action("Index", "Groups")" class="btn btn-primary btn-lg">Groups &raquo;</a></p>
+    </div>
+</div>

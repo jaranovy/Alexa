@@ -1,0 +1,76 @@
+﻿@model Alexa.Service.Dtos.SupplierDto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Supplier</h2>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "SupplierCreateForm", id = "SupplierCreateForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Groups, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @foreach (var subitem in Model.AllGroups)
+                {
+                    <div class="select-btn-div">
+                        <a id="Group_@subitem.ID" onclick="SelectButtonClicked(this)" 
+                           class="btn btn-default select-btn item-no-selected">@subitem.Name</a>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <input type="hidden" name="SelectedItems" id="SelectedItems" value="" />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a onclick="AlexaFormSubmit('#SupplierCreateForm')" class="btn btn-default">Create</a>
+                @Html.ActionLink("Back to Suppliers List", "Index", null, new { Class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

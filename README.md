@@ -1,2 +1,2 @@
 # Alexa
-Example C# ASP.Net MVC application with layers
+Example C# ASP.Net MVC application with repository design pattern
